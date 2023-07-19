@@ -50,7 +50,7 @@ const tempWatchedData = [
 export default function App() {
   return (
     <>
-      <Navbar />
+      <Navbar movies={tempMovieData.length} />
       <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData} />
     </>
   );

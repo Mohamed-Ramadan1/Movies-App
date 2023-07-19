@@ -1,9 +1,9 @@
 import React from "react";
 
-const NumResult = () => {
+const NumResult = ({ movies }) => {
   return (
     <p className="num-results">
-      Found <strong>X</strong> results
+      Found <strong>{movies}</strong> results
     </p>
   );
 };
