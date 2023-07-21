@@ -5,7 +5,7 @@ const Navbar = (props) => {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Search />
+      <Search onSearch={props.onSearch} />
       <NumResult movies={props.movies} />
     </nav>
   );
