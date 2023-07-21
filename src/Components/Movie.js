@@ -1,8 +1,9 @@
 import React from "react";
 
 const Movie = ({ movie }) => {
+  const movieClickHandler = (e) => console.log(movie);
   return (
-    <li>
+    <li onClick={movieClickHandler}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>

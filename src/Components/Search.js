@@ -2,9 +2,11 @@ import { useState } from "react";
 
 const Search = (props) => {
   const [query, setQuery] = useState("");
+
   const queryChangeHandler = (e) => {
-    setQuery(e.target.value);
-    props.onSearch(query);
+    const newQuery = e.target.value; // Get the updated value directly from the event
+    setQuery(newQuery);
+    props.onSearch(newQuery); // Pass the updated value to the onSearch function
   };
 
   return (
