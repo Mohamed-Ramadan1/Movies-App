@@ -25,30 +25,35 @@ export default function App() {
           `http://www.omdbapi.com/?apikey=${KEY}&s=${searchParams}`
         );
         if (!response.ok) {
+          setLoading(false);
           throw Error("Somthing Went wrong with fetching the data");
         }
-
         const data = await response.json();
         setMovies(data.Search);
         setTotalResult(data.totalResults);
         setLoading(false);
       } catch (error) {
         const messageError = error.message;
+        setGetError(messageError);
         console.log(messageError);
       }
     };
 
     featchingData();
-    console.log(getError);
   }, [searchParams, getError]);
 
   return (
     <>
-      <Navbar movies={totalResult} onSearch={getSearchParams} />
+      <Navbar movies={totalResult || 0} onSearch={getSearchParams} />
       {loading ? (
         <p className="loader">Loading...</p>
       ) : (
-        <Main movies={movies} watched={watched} />
+        <Main
+          movies={movies}
+          watched={watched}
+          loading={loading}
+          error={getError}
+        />
       )}
     </>
   );
