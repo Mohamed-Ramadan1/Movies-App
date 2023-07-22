@@ -2,11 +2,13 @@ import React from "react";
 import Movie from "./Movie";
 import FeactchingErrorHandler from "./FeactchingErrorHandler";
 
-const MovieList = ({ movies, getError }) => {
+const MovieList = ({ movies, getSlectedId }) => {
   return (
     <ul className="list">
       {movies ? (
-        movies.map((movie) => <Movie movie={movie} key={movie.imdbID} />)
+        movies.map((movie) => (
+          <Movie movie={movie} key={movie.imdbID} getSlectedId={getSlectedId} />
+        ))
       ) : (
         <FeactchingErrorHandler />
       )}

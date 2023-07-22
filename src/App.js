@@ -10,8 +10,10 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [totalResult, setTotalResult] = useState(0);
   const [getError, setGetError] = useState("");
-  const [loading, setLoading] = useState(false); // Add a loading state
+  const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useState("");
+
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
 
   const getSearchParams = (param) => {
     setSearchParams(param);
@@ -48,6 +50,10 @@ export default function App() {
     featchingData();
   }, [searchParams, getError]);
 
+  const getSlectedId = (id) => {
+    setSelectedMovieId(id);
+  };
+
   return (
     <>
       <Navbar movies={totalResult || 0} onSearch={getSearchParams} />
@@ -58,7 +64,8 @@ export default function App() {
           movies={movies}
           watched={watched}
           loading={loading}
-          error={getError}
+          getSlectedId={getSlectedId}
+          selectedMovieId={selectedMovieId}
         />
       )}
     </>

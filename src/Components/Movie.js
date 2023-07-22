@@ -1,7 +1,9 @@
 import React from "react";
 
-const Movie = ({ movie }) => {
-  const movieClickHandler = (e) => console.log(movie);
+const Movie = ({ movie, getSlectedId }) => {
+  const movieClickHandler = (e) => {
+    getSlectedId(movie.imdbID);
+  };
   return (
     <li onClick={movieClickHandler}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
