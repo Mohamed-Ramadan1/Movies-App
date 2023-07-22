@@ -57,6 +57,16 @@ const SelectedMovie = ({
     };
     getMovieDitails();
   }, [selectedId]);
+
+  //change title of the application .
+  useEffect(() => {
+    if (!title) return;
+    document.title = `Movie || ${title}`;
+    return () => {
+      document.title = "Movie-App";
+    };
+  }, [title]);
+
   return (
     <div className="details">
       {isLoading ? (

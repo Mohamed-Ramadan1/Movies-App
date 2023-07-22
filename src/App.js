@@ -11,7 +11,6 @@ export default function App() {
   const [getError, setGetError] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useState("");
-
   const [selectedMovieId, setSelectedMovieId] = useState(null);
 
   const getSearchParams = (param) => {
@@ -19,12 +18,14 @@ export default function App() {
   };
 
   useEffect(() => {
+    const controller = new AbortController();
     const featchingData = async () => {
       try {
         setLoading(true);
         setGetError("");
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${searchParams}`
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${searchParams}`,
+          { signal: controller.signal }
         );
         if (!response.ok) {
           setLoading(false);
@@ -37,7 +38,6 @@ export default function App() {
       } catch (error) {
         const messageError = error.message;
         setGetError(messageError);
-        console.log(messageError);
       }
     };
     if (!searchParams.length) {
@@ -47,6 +47,9 @@ export default function App() {
     }
 
     featchingData();
+    return function () {
+      controller.abort();
+    };
   }, [searchParams, getError]);
 
   const getSlectedId = (id) => {
