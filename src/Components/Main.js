@@ -16,11 +16,16 @@ const Main = (props) => {
           <SelectedMovie
             selectedId={props.selectedMovieId}
             onCloseMovei={props.onCloseMovei}
+            onAddToWatched={props.onAddToWatched}
+            watched={props.watched}
           />
         ) : (
           <>
             <WatchedSummary watched={props.watched} />
-            <WatchedMoviesList watched={props.watched} />
+            <WatchedMoviesList
+              watched={props.watched}
+              onDeleteWatched={props.onDeleteWatched}
+            />
           </>
         )}
       </Box>

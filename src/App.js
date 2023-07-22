@@ -56,6 +56,15 @@ export default function App() {
     setSelectedMovieId(null);
   };
 
+  //adding movies to the watching list.
+  const handelWatchingMovies = (movie) => {
+    setWatched((watched) => [...watched, movie]);
+  };
+
+  const handelDeleteMoveWatched = (id) => {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  };
+
   return (
     <>
       <Navbar movies={totalResult || 0} onSearch={getSearchParams} />
@@ -69,6 +78,8 @@ export default function App() {
           getSlectedId={getSlectedId}
           selectedMovieId={selectedMovieId}
           onCloseMovei={closeMoveiHandler}
+          onAddToWatched={handelWatchingMovies}
+          onDeleteWatched={handelDeleteMoveWatched}
         />
       )}
     </>
