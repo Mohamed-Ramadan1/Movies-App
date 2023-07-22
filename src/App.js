@@ -1,7 +1,6 @@
 import Navbar from "./Components/Navbar";
 import Main from "./Components/Main";
 import { useEffect, useState } from "react";
-import FeactchingErrorHandler from "./Components/FeactchingErrorHandler";
 
 const KEY = "a48f5736";
 
@@ -51,7 +50,10 @@ export default function App() {
   }, [searchParams, getError]);
 
   const getSlectedId = (id) => {
-    setSelectedMovieId(id);
+    setSelectedMovieId((current) => (id === current ? null : id));
+  };
+  const closeMoveiHandler = () => {
+    setSelectedMovieId(null);
   };
 
   return (
@@ -66,6 +68,7 @@ export default function App() {
           loading={loading}
           getSlectedId={getSlectedId}
           selectedMovieId={selectedMovieId}
+          onCloseMovei={closeMoveiHandler}
         />
       )}
     </>

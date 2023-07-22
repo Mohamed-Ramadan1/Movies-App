@@ -13,7 +13,10 @@ const Main = (props) => {
 
       <Box>
         {props.selectedMovieId ? (
-          <SelectedMovie selectedId={props.selectedMovieId} />
+          <SelectedMovie
+            selectedId={props.selectedMovieId}
+            onCloseMovei={props.onCloseMovei}
+          />
         ) : (
           <>
             <WatchedSummary watched={props.watched} />
