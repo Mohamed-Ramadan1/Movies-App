@@ -21,6 +21,7 @@ export default function App() {
     const featchingData = async () => {
       try {
         setLoading(true);
+        setGetError("");
         const response = await fetch(
           `http://www.omdbapi.com/?apikey=${KEY}&s=${searchParams}`
         );
@@ -38,6 +39,11 @@ export default function App() {
         console.log(messageError);
       }
     };
+    if (!searchParams.length) {
+      setMovies([]);
+      setGetError("");
+      return;
+    }
 
     featchingData();
   }, [searchParams, getError]);
