@@ -6,10 +6,9 @@ const KEY = "a48f5736";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  // const [watched, setWatched] = useState([]);
-  const [totalResult, setTotalResult] = useState(0);
   const [getError, setGetError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [totalResult, setTotalResult] = useState(0);
   const [searchParams, setSearchParams] = useState("");
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [watched, setWatched] = useState(function () {
@@ -74,7 +73,7 @@ export default function App() {
     return function () {
       controller.abort();
     };
-  }, [searchParams, getError]);
+  }, [searchParams]);
 
   return (
     <>
